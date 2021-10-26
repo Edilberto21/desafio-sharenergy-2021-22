@@ -5,20 +5,20 @@ import dadosUsina from './dadosUsina.json'
 class App extends Component {
 
   render() {
-    var getValue = document.getElementById('seletor')
-
-    console.log(getValue)
-    getValue = dadosUsina.map(props => {
-      return props.getValue
+    var strUser = document.getElementById("seletor").getElementsByTagName('option')
+    
+    strUser = dadosUsina.map(props => {
+      return props.strUser 
     })
+    console.log(strUser)
     return (
       <div>
         <select id="seletor">
-          <option value="tempo_h">tempo_h</option>
-          <option value="tensao_V">tensao_V</option>
-          <option value="corrente_A">corrente_A</option>
-          <option value="potencia_kW">potencia_kW</option>
-          <option value="temperatura_C">temperatura_C</option>
+          <option>tempo_h</option>
+          <option>tensao_V</option>
+          <option>corrente_A</option>
+          <option>potencia_kW</option>
+          <option>temperatura_C</option>
           
         </select>
       
@@ -30,11 +30,11 @@ class App extends Component {
           data={{
               //Labels são os valores de x no gráfico.
               
-              labels: getValue.slice(0,151),
+              labels: strUser,
               //Personalizar os dados.
               datasets: [{
                   label: 'Tempo em Horas',
-                  data: getValue,
+                  data: strUser,
                   fill: false,
                   borderColor: 'rgb(75, 192, 192)',
                   tension: 0.1,
