@@ -7,12 +7,13 @@ class App extends Component {
   render() {
     var select = document.getElementById("seletor")
     var option = document.getElementsByTagName("option")
-    var opcaoValor = select.options[select.selectedIndex].text;
-    opcaoValor = dadosUsina.map(props => {
-      if (opcaoValor === props) {
-        opcaoValor = props
+    var opcaoValor = select.options[select.selectedIndex].value;
+    console.log(opcaoValor)
+    option = dadosUsina.map(props => {
+      if (option === props.tensao_V) {
+        props = option
       }
-      return opcaoValor
+      return option
     })
     console.log(option)
 
@@ -34,11 +35,11 @@ class App extends Component {
           data={{
             //Labels são os valores de x no gráfico.
 
-            labels: opcaoValor,
+            labels: option,
             //Personalizar os dados.
             datasets: [{
               label: 'Tempo em Horas',
-              data: opcaoValor,
+              data: option,
               fill: false,
               borderColor: 'rgb(75, 192, 192)',
               tension: 0.1,
