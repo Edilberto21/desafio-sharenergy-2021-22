@@ -5,20 +5,17 @@ import dadosUsina from './dadosUsina.json'
 class App extends Component {
 
   render() {
-    var selectElem = document.getElementById("seletor")
-    var pElem= document.getElementsByTagName('option')
-    selectElem.addEventListener('change', function() {
-      var index = selectElem.selectedIndex;
-      // Add that data to the <p>
-      pElem.innerHTML = 'selectedIndex: ' + index;
-    })
-    pElem = dadosUsina.map(props => {
-      if (pElem === props.tensao_V) {
-        props = pElem
+    var select = document.getElementById("seletor")
+    var option = document.getElementsByTagName("option")
+    var opcaoValor = select.options[select.selectedIndex].text;
+    opcaoValor = dadosUsina.map(props => {
+      if (opcaoValor === props) {
+        opcaoValor = props
       }
-      return pElem
+      return opcaoValor
     })
-    console.log(pElem)
+    console.log(option)
+
     return (
       <div>
         <select id="seletor">
@@ -30,7 +27,6 @@ class App extends Component {
 
         </select>
 
-
         {/* Line é o tipo de gráfico do react-chartjs-2*/}
         <Line
           //Quando usa duas chaves
@@ -38,11 +34,11 @@ class App extends Component {
           data={{
             //Labels são os valores de x no gráfico.
 
-            labels: pElem,
+            labels: opcaoValor,
             //Personalizar os dados.
             datasets: [{
               label: 'Tempo em Horas',
-              data: pElem,
+              data: opcaoValor,
               fill: false,
               borderColor: 'rgb(75, 192, 192)',
               tension: 0.1,
@@ -58,7 +54,6 @@ class App extends Component {
 
       </div>
     )
-
   }
 }
 export default App
