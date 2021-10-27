@@ -1,0 +1,27 @@
+Instalando a biblioteca react: 
+npm install create-react-app
+
+Criando um app react:
+npx create-react-app projeto
+
+Instalando as bibliotecas para criar gráficos:
+npm install react-chatjs-2 chart.js
+
+Instalando o pacote que permite simular API:
+npm install json-server
+
+Execuntando um arquivo.json com json-server:
+json-server --watch exemplo.json
+
+Instalando rotas no react:
+npm install react-router-dom
+
+Intalando styled-components para estilizar componentes:
+npm install styled-components
+
+
+LINKS sobre as informações das ferramentas utilizadas:
+https://www.styled-components.com/
+https://www.chartjs.org/
+https://pt-br.reactjs.org/
+https://reactrouter.com/web/guides/quick-start
