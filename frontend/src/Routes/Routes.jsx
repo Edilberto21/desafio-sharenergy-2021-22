@@ -3,8 +3,9 @@ import React from "react";
 Route são as rotas. */
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import Grafico from "../Grafico/Grafico"
-import Crud from "../Crud/Crud"
+import TabeladeClientes from "../Crud/TabeladeClientes"
 import Home from "../Home/Home"
+import CadastrodeCliente from "../Crud/CadastrodeCliente";
 //Função direta pra ficar mais limpo
 const Routes = () => {
     //Aqui vai usar o switch.
@@ -14,7 +15,8 @@ const Routes = () => {
             exact: Cair exatamento oque foi escrito no parâmetro*/}
             <Route path="/" exact><Home/></Route>
             <Route path="/Grafico"><Grafico/></Route>
-            <Route path="/Crud"><Crud/></Route>
+            <Route path="/TabeladeClientes"><TabeladeClientes/></Route>
+            <Route path="/CadastrodeCliente"><CadastrodeCliente/></Route>
         </Switch>
     )
 }

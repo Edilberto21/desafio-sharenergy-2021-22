@@ -4,36 +4,13 @@ import axios from 'axios'
 import iconeadd from '../Image/iconadicionar.png'
 import iconrem from '../Image/iconremover.png'
 import cliente from '../Image/user.png'
+import dadosUsina from '../Grafico/dadosUsina.json'
 function App() {
   const [numeroCliente, setnumeroCliente] = useState(0)
   const [nomeCliente, setnomeCliente] = useState("")
   const [usinaId, setusinaId] = useState(0)
   const [percentualDeParticipacao, setpercenDeParticipacao] = useState(0)
   const [listaClientes, setlistaClientes] = useState([])
-
-  /*Com o axios fazemos pedidos para
-  que ele possa fazer operações com o banco
-  de dados com url do MongoDB. */
-  const addCliente = () => {
-
-    /*Foi criado /addCliente no index.js
-    que é do servidor. */
-    axios.post('http://localhost:3001/adicionar', {
-
-      //Enviando para o backend
-      numeroCliente: numeroCliente,
-      nomeCliente: nomeCliente,
-      usinaId: usinaId,
-      percentualDeParticipacao: percentualDeParticipacao
-    }).then((resposta) => {
-      /* O que estou fazendo aqui
-      Não quero ficar atualizando o banco 
-      toda vez e nem a página, ai fazendo um set
-      vai direto o cliente criado.*/
-      setlistaClientes([...listaClientes, 
-        {_id: resposta.data._id,numeroCliente: numeroCliente, nomeCliente: nomeCliente, usinaId: usinaId, percentualDeParticipacao: percentualDeParticipacao }])
-    })
-  }
 
   //Atualizado pelo id.
   const atualizarCliente = (id) => {
@@ -79,27 +56,44 @@ function App() {
       console.log("Erro")
     })
   }, [])
+  function percentual(percentualDeParticipacao) {
+      const h = dadosUsina.map((props) => props.tempo_h);
+      const hr = h[1] - h[0];
+      const k = dadosUsina.map((props) => props.potencia_kW);
+      const kw = k.reduce((a,b) => a + b);
+      const defixado = kw.toFixed(0);
+      const kwhpreco = (defixado * hr) * 0.95;
+      const precopercencliente = (percentualDeParticipacao * kwhpreco) / 100
+      return precopercencliente.toFixed(2)
+  }
   return (
-    <div className="App">
+    <div>
+      <button><a href="./CadastrodeCliente">Novo Cliente</a></button>
         {/* Mapeando elementos da lista. */}
         {listaClientes.map((dados) => {
           return (
             <table>
-              <img src={cliente} />
+              <tr>
               <thead>
                 <th>Nome do Cliente</th>
                 <th>Numero do Cliente</th>
                 <th>Id da usina</th>
                 <th>Percentual de participação</th>
+                <th>Percentual por preço</th>
+                <th>Botões</th>
               </thead>
               <tbody>
-                <td>{dados.nomeCliente}</td>
+                <td>
+                <img src={cliente} />
+                {dados.nomeCliente}</td>
                 <td>{dados.numeroCliente}</td>
                 <td>{dados.usinaId}</td>
                 <td>{dados.percentualDeParticipacao}%</td>
-                <td><button onClick={ () => {atualizarCliente(dados._id)}}><img src={iconeadd} /></button></td>
-                <td><button onClick={ () => {removerCliente(dados._id)}}><img src={iconrem} /></button></td>
+                <td>R${percentual(dados.percentualDeParticipacao)}</td>
+                <td><button onClick={ () => {atualizarCliente(dados._id)}}><img src={iconeadd} /></button>
+                <button onClick={ () => {removerCliente(dados._id)}}><img src={iconrem} /></button></td>
               </tbody>
+              </tr>
             </table>
           )
         })}

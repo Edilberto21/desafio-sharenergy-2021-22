@@ -38,7 +38,7 @@ export const AreaHeader = styled.div`
             }
             a:hover {
                 background-color: #2E2E2E;
-                border-radius: 1px;
+                border-radius: 100px;
             }
         }
     }

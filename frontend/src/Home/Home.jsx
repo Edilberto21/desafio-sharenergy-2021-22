@@ -12,9 +12,7 @@ const Home = () => {
                 <th>Express</th>
                 <th>Node</th>
                 <th>React</th>
-                <th>Mongoose</th>
                 <th>Chart</th>
-                <th>react-chartjs-2</th>
             </tr>
             </thead>
             <tbody>
@@ -23,9 +21,7 @@ const Home = () => {
                 <td>Estrutura de aplicação web</td>
                 <td>Funciona tipo um servidor para conectar o React com o MongoDB</td>
                 <td>Frontend da aplicação</td>
-                <td>Vai modelar os dados do MongoDB</td>
                 <td>Ferramenta que usei para criar o gráfico</td>
-                <td>Outra ferramenta que usei para criar o gráfico</td>
             </tr>
             </tbody>
         </table>
